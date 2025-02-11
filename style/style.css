@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap');
+
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+    }
+
+    
+    .mobile-menu {
+      transform: translateX(-100%);
+      background-color: #0f172a;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+      background-color: #0f172a;
+    }
+    
+    .navbar {
+      background-color: #0f172a;
+    }
+
+    .hamburger {
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .hamburger-line {
+      display: block;
+      width: 24px;
+      height: 2px;
+      margin: 5px auto;
+      background-color: white;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .hamburger.active .hamburger-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active .hamburger-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+    
+    header {
+      margin: 5rem 1.5rem 3rem 1.5rem;
+      padding: 10px 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    
+    header h1 {
+      font-size: px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    
+    header p {
+      color: white;
+      font-weight: bold;
+      line-height: 18px;
+    }
+    
+    
+    main {
+      margin-left: 40px;
+      margin-right: 40px;
+      margin-top: 2.2rem;
+    }
+    
+    main h1 {
+     background: linear-gradient(90deg, #ff8a00, #e52e71);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+     font-size: 25px;
+     font-weight: bold;
+     margin-bottom: 8px;
+    }
+    
+    main .item {
+      display: flex;
+      height: 45px;
+      margin: 5px auto;
+      justify-content: space-between;
+      align-items: center;
+      color: black;
+      background-color: rgba(147, 197, 253, 0.1);
+      border-radius: 20px;
+    }
+    
+    main .item .method {
+      margin-left: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+    }
+    
+    main .item .title-api {
+      color: white;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    
+    main .item .endpoint {
+      margin-right: 20px;
+      color: white;
+      font-size: 25px;
+    }
+
+    
+    main .item .endpoint a:active {
+      background: linear-gradient(90deg, #ff8a00, #e52e71);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+      transform: scale(1.3);
+    
+    }
+    
+    footer {
+     padding: 20px;
+     margin-top: 2.5rem;
+     background-color: #0f172a;
+     text-align: center;
+     color: white;
+    }
+    
