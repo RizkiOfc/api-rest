@@ -66,10 +66,10 @@ headers: {
 const $ = cheerio.load(data)
 
 
-const result = {};
+const result = [];
 
 
-const hasil = {};
+const hasil = [];
 
 
  $('div > a').get().map(b => {
