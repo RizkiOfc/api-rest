@@ -35,7 +35,7 @@ async function pinterest2(query) {
 				images_url: item.images?.['736x']?.url?? '',
 				grid_title: item.grid_title?? ''
 			}));
-			resolve(result);
+			resolve(hasil.length > 0 ? hasil[0] : null);
 		} catch (e) {
 			reject(e)
 		}
@@ -99,7 +99,7 @@ hasil.push(v.replace(/236/g,'736'))
 hasil.shift();
 
 
-resolve(hasil)
+resolve(hasil.length > 0 ? hasil[Math.floor(Math.random() * hasil.length)] : null);
 
 
 })
