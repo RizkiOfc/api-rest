@@ -14,6 +14,7 @@ const fetch = require("node-fetch")
 const { BSearch } = require('./function/bstation.js') 
 const { doodS } = require('./function/doodstream.js')
 const { douyin } = require('./function/douyin.js')
+const { FontSearch } require('./function/fontSearch')
 const { chord } = require('./function/chord.js')
 const { ttSearch } = require('./function/tiktoksearch.js') 
 const { souncloudDl } = require('./function/soundcloud.js') 
@@ -662,6 +663,23 @@ app.get("/api/search/bstation", async (req, res) => {
         console.log(error);
         res.send(error)
     }
+})
+
+app.get("/api/search/fontsearch", async(req, res) => {
+  try {
+    const { q } = req.teks
+    if(!q) return res.json('Masukan Query Parameters!')
+    let result = await fontSearch(q)
+    if(!result) return res.json('Error!')
+    res.json({
+      status: true,
+      creator: global.creator
+      result: result.result
+    })
+  } catch (e) {
+  console.log(e)
+  res.send(e)
+  }
 })
 
 app.get("/api/search/sfile", async (req, res) => {
