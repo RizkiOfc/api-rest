@@ -12,7 +12,7 @@
   "dependencies": {
     "@vreden/youtube_scraper": "^1.2.4",
     "async-g-i-s": "^1.5.5",
-    "cheerio": 'latest',
+    "cheerio": '1.0.0',
     "axios": "^1.7.7",
     "body-parser": "^1.20.3",
     "caliph-api": "^1.0.1",
