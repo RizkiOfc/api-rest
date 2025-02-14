@@ -21,7 +21,6 @@
     "express": "^4.21.1",
     "fb-downloader-scrapper": "^2.0.0",
     "form-data": "^4.0.1",
-    "cheerio": "latest",
     "fs": "^0.0.1-security",
     "groq-sdk": "^0.9.1",
     "instagram-url-direct": "^1.1.2",
