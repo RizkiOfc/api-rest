@@ -1,4 +1,4 @@
 
-global.creator = "GhostXdzz"
-global.password_admin = "Ghost2024"
-global.apikey = ["GhostXdzz"]
+global.creator = "RizkyOfc"
+global.password_admin = "Rizz2025"
+global.apikey = ["RizkyOfc"]
