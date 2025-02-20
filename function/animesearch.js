@@ -28,5 +28,4 @@ async function scrapeAnimeTrending() {
     }
 }
 
-// Contoh penggunaan
-return scrapeAnimeTrending()
+
