@@ -14,6 +14,7 @@ const fetch = require("node-fetch")
 const { BSearch } = require('./function/bstation.js') 
 const { doodS } = require('./function/doodstream.js')
 const { douyin } = require('./function/douyin.js')
+const { mediafire } = require('./function/mediafire.js')
 const { chord } = require('./function/chord.js')
 const { ttSearch } = require('./function/tiktoksearch.js') 
 const { souncloudDl } = require('./function/soundcloud.js') 
@@ -267,6 +268,19 @@ app.get("/api/download/fbdl", async (req, res) => {
         console.log(error);
         res.status(500).json({ error: "An error occurred while fetching data." });
     }
+})
+
+app.get("/api/download/mediafire", async (req, res) => {
+  const { url } = req.query;
+  if (!url) return res.json("Masukan Url Parameters!") 
+
+  try {
+    var anu = await mediafire(`${url}`)
+    res.json(anu)
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "An error occurred while fetching data." })
+  }
 })
 
 app.get("/api/download/igdl", async (req, res) => {
