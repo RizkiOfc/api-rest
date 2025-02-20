@@ -276,7 +276,11 @@ app.get("/api/download/mediafire", async (req, res) => {
 
   try {
     var anu = await mediafire(`${url}`)
-    res.json(anu)
+    res.json({
+      status: true,
+      creator: global.creator,
+      result: anu
+    })
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "An error occurred while fetching data." })
