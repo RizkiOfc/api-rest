@@ -19,6 +19,7 @@ const { chord } = require('./function/chord.js')
 const { ttSearch } = require('./function/tiktoksearch.js') 
 const { souncloudDl } = require('./function/soundcloud.js') 
 const { lirikLagu } = require('./function/liriklagu.js') 
+const { anime } = require('./function/animesearch')
 const { ephoto } = require('./function/pornhub.js') 
 const { YtMp3, YtMp4, Search } = require('./function/youtube.js') 
 const scp = require("caliph-api")
@@ -646,6 +647,21 @@ app.get("/api/search/pinterest", async (req, res) => {
         console.log(error);
         res.send(error)
     }
+})
+
+app.get("/api/download/animesearch", async (req, res) => {
+  try {
+    const result = await animesearch()
+    if(!result) return res.json("error");
+    res.json({
+      status: true,
+      creator: global.creator,
+      result: result
+    })
+  } catch (e) {
+    console.log(e)
+    res.send(e)
+  }
 })
 
 app.get("/api/search/halodoc", async (req, res) => {
