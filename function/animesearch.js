@@ -29,3 +29,4 @@ async function scrapeAnimeTrending() {
 }
 
 
+module.exports = { scrapeAnimeTrending }
