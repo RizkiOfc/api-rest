@@ -17,6 +17,7 @@ const { douyin } = require('./function/douyin.js')
 const { mediafire } = require('./function/mediafire.js')
 const { muslimai } = require("./function/muslimai.js")
 const { chord } = require('./function/chord.js')
+const { wikimedia } = require("./function/wikimedia.js")
 const { ttSearch } = require('./function/tiktoksearch.js') 
 const { souncloudDl } = require('./function/soundcloud.js') 
 const { lirikLagu } = require('./function/liriklagu.js') 
@@ -696,6 +697,23 @@ app.get("/api/search/halodoc", async (req, res) => {
       const { q } = req.query
       if (!q) return res.json("Isi Parameternya!");
       const result = await halodoc(q)
+      if (!result) return res.json("Error!");
+      res.json({
+      status: true, 
+      creator: global.creator, 
+      result: result
+      })
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
+
+app.get("/api/search/wikimedia", async (req, res) => {
+    try {     
+      const { title } = req.query
+      if (!title) return res.json("Isi Parameternya!");
+      const result = await wikimedia(title)
       if (!result) return res.json("Error!");
       res.json({
       status: true, 
