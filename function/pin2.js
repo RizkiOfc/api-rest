@@ -33,4 +33,4 @@ async function pinterest(query) {
 	return container;
 };
 
-module.exports = { pinterest };
+module.exports = { pinterest }
