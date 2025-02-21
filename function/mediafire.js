@@ -38,3 +38,5 @@ async function mediafire(url) {
     return { error: error.message };
   }
 }
+
+module.exports = { mediafire }
