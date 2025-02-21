@@ -11,7 +11,6 @@ const { getBuffer, fetchJson } = require('./function/function.js')
 const { stalk } = require("node-tiklydown")
 const { setTimeout: sleep } = require('timers/promises');
 const fetch = require("node-fetch")
-const { deepsek } = require("./function/deepsek.js")
 const { BSearch } = require('./function/bstation.js') 
 const { doodS } = require('./function/doodstream.js')
 const { douyin } = require('./function/douyin.js')
@@ -218,37 +217,6 @@ app.get("/api/ai/gpt-3-5-turbo", async (req, res) => {
         res.status(500).json({ error: "An error occurred while fetching data." });
     }
 })
-
-
-app.get("/api/ai/gemini", async (req, res) => {
-    const { text } = req.query;
-    if (!text) return res.json("Isi Parameternya!");
-
-try {
-const query = text
-
-const result = await deepsek(query);
-const anu = await result.response.text()
-       
-        if (!anu) {
-        res.json ({
-        status: false,
-        creator: global.creator,
-        result: null
-        })
-        }
-
-        res.json({
-            status: true,
-            creator: global.creator,
-            result: anu
-        });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: "An error occurred while fetching data." });
-    }
-})
-
 
 
 app.get("/api/ai/gemini", async (req, res) => {
