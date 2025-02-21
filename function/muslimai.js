@@ -32,3 +32,4 @@ async function muslimai(query) {
     }
 }
  
+module.exports = { muslimai }
