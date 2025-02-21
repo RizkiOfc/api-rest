@@ -21,6 +21,7 @@ const { ttSearch } = require('./function/tiktoksearch.js')
 const { souncloudDl } = require('./function/soundcloud.js') 
 const { lirikLagu } = require('./function/liriklagu.js') 
 const { animesearch } = require('./function/animesearch')
+const { playstore } = require("./function/playstore.js")
 const { ephoto } = require('./function/pornhub.js') 
 const { YtMp3, YtMp4, Search } = require('./function/youtube.js') 
 const scp = require("caliph-api")
@@ -784,6 +785,23 @@ app.get("/api/search/ytsearch", async (req, res) => {
       const { q } = req.query
       if (!q) return res.json("Isi Parameternya!");
       const result = await Search(q)
+      if (!result) return res.json("Error!");
+      res.json({
+      status: true, 
+      creator: global.creator, 
+      result: result
+      })
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
+
+app.get("/api/search/playstore", async (req, res) => {
+    try {     
+      const { search } = req.query
+      if (!search) return res.json("Isi Parameternya!");
+      const result = await playstore(search)
       if (!result) return res.json("Error!");
       res.json({
       status: true, 
