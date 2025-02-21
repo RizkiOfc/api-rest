@@ -12,7 +12,7 @@ const { stalk } = require("node-tiklydown")
 const { setTimeout: sleep } = require('timers/promises');
 const fetch = require("node-fetch")
 const { BSearch } = require('./function/bstation.js') 
-const { pinterest2 } = require("./funtion/pin2.js")
+const { pin2 } = require("./funtion/pin2.js")
 const { doodS } = require('./function/doodstream.js')
 const { douyin } = require('./function/douyin.js')
 const { mediafire } = require('./function/mediafire.js')
@@ -678,11 +678,11 @@ app.get("/api/search/pinterest", async (req, res) => {
     }
 })
 
-app.get("/api/search/pinterest2", async (req, res) => {
+app.get("/api/search/pin2", async (req, res) => {
     try {     
       const { query } = req.query
       if (!query) return res.json("Isi Parameternya!");
-      const result = await pinterest2(query)
+      const result = await pin2(query)
       if (!result) return res.json("Error!");
       res.json({
       status: true, 
