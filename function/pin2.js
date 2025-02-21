@@ -1,7 +1,7 @@
 
 const axios = require('axios');
 
-async function pinterest(query) {
+async function pin2(query) {
 	const {
 		data
 	} = await axios.get(`https://www.pinterest.com/resource/BaseSearchResource/get/`, {
@@ -33,4 +33,4 @@ async function pinterest(query) {
 	return container;
 };
 
-module.exports = { pinterest }
+module.exports = { pin2 }
