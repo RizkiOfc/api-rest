@@ -15,6 +15,7 @@ const { BSearch } = require('./function/bstation.js')
 const { doodS } = require('./function/doodstream.js')
 const { douyin } = require('./function/douyin.js')
 const { mediafire } = require('./function/mediafire.js')
+const { muslimai } = require("./function/muslimai.js")
 const { chord } = require('./function/chord.js')
 const { ttSearch } = require('./function/tiktoksearch.js') 
 const { souncloudDl } = require('./function/soundcloud.js') 
@@ -161,6 +162,31 @@ app.get("/api/ai/openai", async (req, res) => {
             status: true,
             creator: global.creator,
             result: anu.respon     
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "An error occurred while fetching data." });
+    }
+})
+
+app.get("/api/ai/muslimai", async (req, res) => {
+    const { query } = req.query;
+    if (!query) return res.json("Isi Parameternya!");
+
+    try {
+        var anu = await muslimai(`${query}`)
+        if (!anu.status) {
+        res.json ({
+        status: false,
+        creator: global.creator,
+        result: anu
+        })
+        }
+
+        res.json({
+            status: true,
+            creator: global.creator,
+            result: anu     
         });
     } catch (error) {
         console.log(error);
