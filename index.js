@@ -25,6 +25,7 @@ const { lirikLagu } = require('./function/liriklagu.js')
 const { animesearch } = require('./function/animesearch')
 const { playstore } = require("./function/playstore.js")
 const { ephoto } = require('./function/pornhub.js') 
+const { simsimi } = require("./function/simsimi.js")
 const { YtMp3, YtMp4, Search } = require('./function/youtube.js') 
 const scp = require("caliph-api")
 const { pinterest2, pinterest } = require('./function/pinterest.js') 
@@ -245,6 +246,30 @@ app.get("/api/ai/gpt-3-5-turbo", async (req, res) => {
         console.log(error);
         res.status(500).json({ error: "An error occurred while fetching data." });
     }
+})
+
+app.get("/api/ai/simsimi", async (req, res) => {
+  const { text, lang = 'id' } req.query
+  if(!text) return res.json("Isi Query Parameters!");
+  try {
+    var anu = await simsimi(`${text}`)
+    if(!anu.status) {
+      res.json({
+        status: true,
+        creator: global.creator,
+        result: anu
+      })
+    }
+
+    res.json({
+      status: true,
+      creator: global.creator,
+      result: anu
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({error: "Gagal Result"})
+  }
 })
 
 
