@@ -253,7 +253,7 @@ app.get("/api/ai/simsimi", async (req, res) => {
     if (!text) return res.json("Isi Parameternya!");
 
     try {
-        var anu = await muslimai(`${text}`)
+        var anu = await simsimi(`${text}`)
         if (!anu.status) {
         res.json ({
         status: false,
