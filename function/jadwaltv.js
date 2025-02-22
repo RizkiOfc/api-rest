@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 
 async function jadwaltv(channel) {
     try {
-        const url = `https://www.jadwaltv.net/channel/${channel.toLowerCase()}`;
+        const url = `https://www.jadwaltv.net/channel/${channel}`;
         const { data } = await axios.get(url);
         const $ = cheerio.load(data);
 
