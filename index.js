@@ -302,7 +302,7 @@ app.get('/api/jadwal/jadwaltv', async (req, res) => {
 
         res.json({
             status: true,
-            channel: channel.toUpperCase(),
+            creator: global.creator,
             result: jadwal
         });
     } catch (error) {
