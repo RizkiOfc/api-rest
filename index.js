@@ -24,6 +24,7 @@ const { souncloudDl } = require('./function/soundcloud.js')
 const { lirikLagu } = require('./function/liriklagu.js') 
 const { animesearch } = require('./function/animesearch')
 const { playstore } = require("./function/playstore.js")
+const { ssweb } = require("./function/ssweb.js")
 const { ephoto } = require('./function/pornhub.js') 
 const { simsimi } = require("./function/simsimi.js")
 const { YtMp3, YtMp4, Search } = require('./function/youtube.js') 
@@ -569,6 +570,24 @@ app.get("/api/tools/isgd", async (req, res) => {
       if (!url) return res.json("Isi Parameternya!");
       if (!url.startsWith("https://")) res.json("Link tautan tidak valid!")
       const result = await shortUrl2(url)
+      if (!result) return res.json("Error!");
+      res.json({
+      status: true, 
+      creator: global.creator, 
+      link: result
+      })
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
+
+  app.get("/api/tools/ssweb", async (req, res) => {
+    try {     
+      const { url } = req.query
+      if (!url) return res.json("Isi Parameternya!");
+      if (!url.startsWith("https://")) res.json("Link tautan tidak valid!")
+      const result = await ssweb(url)
       if (!result) return res.json("Error!");
       res.json({
       status: true, 
