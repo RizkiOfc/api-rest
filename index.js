@@ -276,30 +276,40 @@ app.get("/api/ai/simsimi", async (req, res) => {
     }
 })
 
-app.get("/api/jadwal/jadwaltv", async (req, res) => {
-    const { channel } = req.query;
-    if (!channel) return res.json("Masukan Channel Parameternya!");
+app.get('/api/jadwal/jadwaltv', async (req, res) => {
+    const { channel } = req.params;
 
     try {
-        var anu = await jadwaltv(`${channel}`)
-        if (!anu.status) {
-        res.json ({
-        status: false,
-        creator: global.creator,
-        result: anu
-        })
+        const url = `https://jadwaltv.net/channel/${channel.toLowerCase()}`;
+        const { data } = await axios.get(url);
+        const $ = cheerio.load(data);
+
+        let jadwal = [];
+
+        // Scraping data dari tabel
+        $('.table tbody tr').each((i, el) => {
+            const jam = $(el).find('td').eq(0).text().trim();
+            const acara = $(el).find('td').eq(1).text().trim();
+
+            if (jam && acara) {
+                jadwal.push({ jam, acara });
+            }
+        });
+
+        if (jadwal.length === 0) {
+            return res.status(404).json({ status: false, message: `Jadwal untuk channel ${channel} tidak ditemukan.` });
         }
 
         res.json({
             status: true,
-            creator: global.creator,
-            result: anu     
+            channel: channel.toUpperCase(),
+            jadwal
         });
     } catch (error) {
-        console.log(error);
-        res.status(500).json({ error: "An error occurred while fetching data." });
+        console.error(error);
+        res.status(500).json({ status: false, message: 'Terjadi kesalahan saat mengambil data.' });
     }
-})
+});
 
 
 app.get("/api/ai/gemini", async (req, res) => {
