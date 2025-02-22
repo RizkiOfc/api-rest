@@ -586,14 +586,11 @@ app.get("/api/tools/isgd", async (req, res) => {
     try {     
       const { url } = req.query
       if (!url) return res.json("Isi Parameternya!");
-      if (!url.startsWith("https://")) res.json("Link tautan tidak valid!")
-      const result = await ssweb(url)
-      if (!result) return res.json("Error!");
-      res.json({
-      status: true, 
-      creator: global.creator, 
-      link: result
-      })
+      const image = await getBuffer(url)
+      if (!image) res.json("Error!");
+      const result = await ssweb(image)
+      await res.set("Content-Type", "image/png")
+      await res.send(result)
     } catch (error) {
         console.log(error);
         res.send(error)
