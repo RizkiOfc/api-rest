@@ -277,7 +277,7 @@ app.get("/api/ai/simsimi", async (req, res) => {
 })
 
 app.get('/api/jadwal/jadwaltv', async (req, res) => {
-    const { channel } = req.params;
+    const { channel } = req.query;
 
     try {
         const url = `https://jadwaltv.net/channel/${channel.toLowerCase()}`;
@@ -303,7 +303,7 @@ app.get('/api/jadwal/jadwaltv', async (req, res) => {
         res.json({
             status: true,
             channel: channel.toUpperCase(),
-            jadwal
+            result: jadwal
         });
     } catch (error) {
         console.error(error);
