@@ -249,7 +249,7 @@ app.get("/api/ai/gpt-3-5-turbo", async (req, res) => {
 })
 
 app.get("/api/ai/simsimi", async (req, res) => {
-  const { text, lang = 'id' } req.query
+  const { text } req.query
   if(!text) return res.json("Isi Query Parameters!");
   try {
     var anu = await simsimi(`${text}`)
