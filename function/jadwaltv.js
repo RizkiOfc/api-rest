@@ -14,7 +14,8 @@ async function jadwaltv(channel) {
                 jam,
                 acara
             };
-            console.log(acara)
+            //console.log(acara)
+            return res
         })
     } catch (error) {
         return error
