@@ -1030,7 +1030,7 @@ app.use((err, req, res, next) => {
 
 
 app.use((req, res, next) => {
-res.send("Hello World :)")
+res.send("Sepertinya Ada Gangguan, Mohon Laporkan Kepada Creator")
 });
 
 
