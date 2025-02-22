@@ -1,7 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-async function jadwalsholat(id) {
+async function jadwalsolat(id) {
     try {
         const url = `https://www.jadwalsholat.org/adzan/daily.php?id=${id}`
         const { data } = await axios.get(url);
@@ -21,4 +21,4 @@ async function jadwalsholat(id) {
     }
 }
 
-module.exports = { jadwalsholat }
+module.exports = { jadwalsolat }
