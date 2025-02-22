@@ -297,7 +297,7 @@ app.get('/api/jadwal/jadwaltv', async (req, res) => {
         });
 
         if (jadwal.length === 0) {
-            return res.status(404).json({ status: false, message: `Jadwal untuk channel ${channel} tidak ditemukan.` });
+            return res.status(404).json({ status: false, message: `Masukan Nama Channel Parameters!` });
         }
 
         res.json({
