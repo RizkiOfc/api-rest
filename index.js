@@ -14,6 +14,7 @@ const fetch = require("node-fetch")
 const { BSearch } = require('./function/bstation.js') 
 const { pin2 } = require("./function/pin2.js")
 const { doodS } = require('./function/doodstream.js')
+const { jadwalsolat } = require("./function/jadwalsolat.js")
 const { douyin } = require('./function/douyin.js')
 const { mediafire } = require('./function/mediafire.js')
 const { muslimai } = require("./function/muslimai.js")
@@ -326,6 +327,24 @@ app.get("/api/download/fbdl", async (req, res) => {
         res.status(500).json({ error: "An error occurred while fetching data." });
     }
 })
+
+app.get("/api/jadwal//solat", async (req, res) => {
+    const { id } = req.query;
+    if (!id) return res.json("Masukan Id Parametersr!!");
+
+    try {
+        var anu = await jadwalsolat(`${id}`)
+        res.json({
+        status: true, 
+        creator: global.creator, 
+        result: anu
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "An error occurred while fetching data." });
+    }
+})
+
 
 app.get("/api/download/mediafire", async (req, res) => {
   const { url } = req.query;
