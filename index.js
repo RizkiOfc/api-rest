@@ -11,6 +11,7 @@ const { getBuffer, fetchJson } = require('./function/function.js')
 const { stalk } = require("node-tiklydown")
 const { setTimeout: sleep } = require('timers/promises');
 const fetch = require("node-fetch")
+const { jadwaltv } = require("./function/jadwaltv.js")
 const { BSearch } = require('./function/bstation.js') 
 const { pin2 } = require("./function/pin2.js")
 const { doodS } = require('./function/doodstream.js')
@@ -256,6 +257,31 @@ app.get("/api/ai/simsimi", async (req, res) => {
 
     try {
         var anu = await simsimi(`${text}`)
+        if (!anu.status) {
+        res.json ({
+        status: false,
+        creator: global.creator,
+        result: anu
+        })
+        }
+
+        res.json({
+            status: true,
+            creator: global.creator,
+            result: anu     
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: "An error occurred while fetching data." });
+    }
+})
+
+app.get("/api/jadwal/jadwaltv", async (req, res) => {
+    const { channel } = req.query;
+    if (!channel) return res.json("Masukan Channel Parameternya!");
+
+    try {
+        var anu = await jadwaltv(`${channel}`)
         if (!anu.status) {
         res.json ({
         status: false,
