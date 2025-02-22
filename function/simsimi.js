@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const { URLSearchParams } = require('url');
  
-async function simSimi(text, languageCode = 'id') {
+async function simsimi(text, languageCode = 'id') {
   const url = 'https://api.simsimi.vn/v1/simtalk';
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
