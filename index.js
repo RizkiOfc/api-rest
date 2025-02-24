@@ -313,8 +313,8 @@ app.get('/api/jadwal/jadwaltv', async (req, res) => {
 
 app.get("/api/tools/removebg", async (res, req) => {
     try {
-    const { text } = req.query;
-    if(!text) return res.json("Masukan Url Parameters!");
+    const { url } = req.query;
+    if(!url) return res.json("Masukan Url Parameters!");
     const image = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=322559dd4bdfb221f5f311da&img=${text}`)
     if(!image) res.json("Error");
     await res.set("Content-Type", "image/png");
