@@ -315,7 +315,7 @@ app.get("/api/tools/removebg", async (res, req) => {
     try {
     const { url } = req.query;
     if(!url) return res.json("Masukan Url Parameters!");
-    const image = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=322559dd4bdfb221f5f311da&img=${text}`)
+    const image = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=322559dd4bdfb221f5f311da&img=${url}`)
     if(!image) res.json("Error");
     await res.set("Content-Type", "image/png");
     await res.send(image) 
