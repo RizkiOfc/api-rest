@@ -25,4 +25,4 @@ async function getKode(query) {
     }
 }
 
-modeule.exports = { getKode }
+module.exports = { getKode }
