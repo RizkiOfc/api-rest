@@ -15,13 +15,12 @@ async function getKode(query) {
                 const kelurahan = $(klm[0]).text().trim();
                 const kecamatan = $(klm[1]).text().trim();
                 const kode = $(klm[2]).text().trim();
-
-                result.push({
-                    kelurahan,
-                    kecamatan,
-                    kode
-                })
                 }
+            const result = {
+                kelurahan,
+                kecamatan,
+                kode
+            }
             }
             return result
         })
