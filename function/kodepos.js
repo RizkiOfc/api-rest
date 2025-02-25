@@ -3,7 +3,7 @@ const cheerio = require("cheerio")
 
 async function getKode(query) {
     try {
-        const url = `https://nomorkodepos.com/?s=${encodeURIComponent(query)}`;
+        const url = `https://nomorkodepos.com/?s=${query}`;
         const { data } = await axios.get(url);
         const $ = await cheerio.load(data);
 
