@@ -806,23 +806,6 @@ app.get("/api/search/pin2", async (req, res) => {
     }
 })
 
-app.get("/api/search/kodepos", async (req, res) => {
-    try {     
-      const { query } = req.query
-      if (!query) return res.json("Isi Parameternya!");
-      const result = await kodepos(query)
-      if (!result) return res.json("Error!");
-      res.json({
-      status: true, 
-      creator: global.creator, 
-      result: result
-      })
-    } catch (error) {
-        console.log(error);
-        res.send(error)
-    }
-})
-
 
 app.get("/api/download/animesearch", async (req, res) => {
   try {
@@ -961,6 +944,24 @@ app.get("/api/search/ytsearch", async (req, res) => {
         res.send(error)
     }
 })
+
+app.get("/api/search/kodepos", async (req, res) => {
+    try {     
+      const { query } = req.query
+      if (!query) return res.json("Isi Parameternya!");
+      const result = await kodepos(query)
+      if (!result) return res.json("Error!");
+      res.json({
+      status: true, 
+      creator: global.creator, 
+      result: result
+      })
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
+
 
 app.get("/api/search/playstore", async (req, res) => {
     try {     
