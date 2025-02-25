@@ -18,6 +18,7 @@ const { doodS } = require('./function/doodstream.js')
 const { jadwalsolat } = require("./function/jadwalsolat.js")
 const { douyin } = require('./function/douyin.js')
 const { mediafire } = require('./function/mediafire.js')
+const { kodepos } require("./function/kodepos.js")
 const { muslimai } = require("./function/muslimai.js")
 const { chord } = require('./function/chord.js')
 const { wikimedia } = require("./function/wikimedia.js")
@@ -793,6 +794,23 @@ app.get("/api/search/pin2", async (req, res) => {
       const { query } = req.query
       if (!query) return res.json("Isi Parameternya!");
       const result = await pin2(query)
+      if (!result) return res.json("Error!");
+      res.json({
+      status: true, 
+      creator: global.creator, 
+      result: result
+      })
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
+
+app.get("/api/search/kodepos", async (req, res) => {
+    try {     
+      const { query } = req.query
+      if (!query) return res.json("Isi Parameternya!");
+      const result = await kodepos(query)
       if (!result) return res.json("Error!");
       res.json({
       status: true, 
