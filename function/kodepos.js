@@ -9,17 +9,18 @@ async function getKode(query) {
 
         let result = [];
 
-        $("table tbody tr").each((i, el) => {
+        $(".table tbody tr").each((i, el) => {
             const klm = $(el).find("td");
             if(klm.length >= 3) {
                 const kelurahan = $(klm[0]).text().trim();
                 const kecamatan = $(klm[1]).text().trim();
                 const kode = $(klm[2]).text().trim();
 
-                const result = {
+                result.push({
                     kelurahan,
                     kecamatan,
                     kode
+                })
                 }
             }
             return result
