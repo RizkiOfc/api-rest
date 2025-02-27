@@ -18,7 +18,7 @@ const { doodS } = require('./function/doodstream.js')
 const { jadwalsolat } = require("./function/jadwalsolat.js")
 const { douyin } = require('./function/douyin.js')
 const { mediafire } = require('./function/mediafire.js')
-const { nhentaiSearch } = require("./function/nhentaiSearch")
+const { nhentaiSearch } = require("./function/nhentaiSearch.js")
 const { muslimai } = require("./function/muslimai.js")
 const { kodepos } = require("./function/kodepos.js")
 const { chord } = require('./function/chord.js')
@@ -381,9 +381,9 @@ app.get("/api/download/fbdl", async (req, res) => {
     }
 })
 
-app.get("/api/search/nhentai", async (req, res) => {
+app.get("/api/search/jadwalsolat", async (req, res) => {
     const { id } = req.query;
-    if (!id) return res.json("Masukan Id Parametersr!!");
+    if (!id) return res.json("Masukan Id Parameters!!");
 
     try {
         var anu = await jadwalsolat(`${id}`)
