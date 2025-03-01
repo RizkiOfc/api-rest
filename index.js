@@ -315,19 +315,30 @@ app.get('/api/jadwal/jadwaltv', async (req, res) => {
 
 
 
-app.get("/api/tools/removebg", async (res, req) => {
-    try {
-    const { url } = req.query;
-    if(!url) return res.json("Masukan Url Parameters!");
-    const image = await getBuffer(`https://api.lolhuman.xyz/api/removebg?apikey=322559dd4bdfb221f5f311da&img=${url}`)
-    if(!image) res.json("Error");
-    await res.set("Content-Type", "image/png");
-    await res.send(image) 
-    } catch (error) {
-    console.log(error)
-    res.send(error)
+app.get('/api/tools/removebg', async (req, res) => {
+    let { img } = req.query;
+
+    // Cek apakah ada URL gambar
+    if (!img) {
+        return res.status(400).json({ success: false, message: "Masukan Url Parameters!" });
     }
-})
+
+    try {
+        // Request ke API Lolhuman
+        let response = await axios.get(`https://api.lolhuman.xyz/api/removebg?apikey=Rizki#321&img=${encodeURIComponent(img)}`, {
+            responseType: 'arraybuffer' // Agar hasil berupa gambar
+        });
+
+        // Kirim gambar hasil ke user
+        res.setHeader('Content-Type', 'image/png');
+        res.send(response.data);
+    } catch (error) {
+        console.error("Error RemoveBG:", error.message);
+        res.status(500).json({ success: false, message: "Gagal memproses gambar!" });
+                  }
+});
+      
+
 
 app.get("/api/ai/gemini", async (req, res) => {
     const { text } = req.query;
