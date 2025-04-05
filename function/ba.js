@@ -10,3 +10,5 @@ async function blueArchive() {
         throw error;
     }
 }
+
+module.exports = { ba };
