@@ -36,7 +36,7 @@ const scp = require("caliph-api")
 const { pinterest2, pinterest } = require('./function/pinterest.js') 
 const { pindlVideo } = require('./function/pindl.js') 
 const { halodoc } = require('./function/halodoc.js')
-const { blueArchive } = require('./function/ba.js');
+const { ba } = require('./function/ba.js');
 const scp2 = require("imon-videos-downloader")
 const { googleImage } = require('./function/gimage.js') 
 const { githubstalk } = require('./function/githubstalk.js') 
@@ -130,7 +130,7 @@ res.sendFile(path.join(__dirname, 'index.html'));
 
 app.get('random/ba', async (req, res) => {
     try {
-        const anu = await blueArchive();
+        const anu = await ba();
         res.writeHead(200, {
             'Content-Type': 'image/png',
             'Content-Length': anu.length,
