@@ -36,6 +36,7 @@ const scp = require("caliph-api")
 const { pinterest2, pinterest } = require('./function/pinterest.js') 
 const { pindlVideo } = require('./function/pindl.js') 
 const { halodoc } = require('./function/halodoc.js')
+const { blueArchive } = require('./function/ba.js');
 const scp2 = require("imon-videos-downloader")
 const { googleImage } = require('./function/gimage.js') 
 const { githubstalk } = require('./function/githubstalk.js') 
@@ -125,7 +126,21 @@ app.get('/api/orkut/cekstatus', async (req, res) => {
 
 app.get('/', (req, res) => {
 res.sendFile(path.join(__dirname, 'index.html'));
-})
+});
+
+app.get('random/ba', async (req, res) => {
+    try {
+        const anu = await blueArchive();
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': anu.length,
+        });
+        res.end(anu);
+    } catch (error) {
+        res.status(500).send(`Error: ${error.message}`);
+    };
+});
+
 
 
 app.get("/api/ai/openai-prompt", async (req, res) => {
