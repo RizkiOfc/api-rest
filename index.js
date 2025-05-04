@@ -37,6 +37,7 @@ const { pinterest2, pinterest } = require('./function/pinterest.js')
 const { pindlVideo } = require('./function/pindl.js') 
 const { halodoc } = require('./function/halodoc.js')
 const { ba } = require('./function/ba.js');
+const { getGempa } = require('./function/bmkg.js');
 const scp2 = require("imon-videos-downloader")
 const { googleImage } = require('./function/gimage.js') 
 const { githubstalk } = require('./function/githubstalk.js') 
@@ -97,6 +98,16 @@ app.get('/api/orkut/createpayment', async (req, res) => {
     }
 })
 
+
+app.get('/api/berita/gempa', async() => {
+  const response = await getGempa();
+  const anu = await response.data;
+  res.json({
+    status: true,
+    creator: global.creator,
+    result: anu
+  })
+})
 
 
 app.get('/api/orkut/cekstatus', async (req, res) => {
