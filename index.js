@@ -37,7 +37,7 @@ const { pinterest2, pinterest } = require('./function/pinterest.js')
 const { pindlVideo } = require('./function/pindl.js') 
 const { halodoc } = require('./function/halodoc.js')
 const { ba } = require('./function/ba.js');
-const { getGempa } = require('./function/bmkg.js');
+//const { getGempa } = require('./function/bmkg.js');
 const scp2 = require("imon-videos-downloader")
 const { googleImage } = require('./function/gimage.js') 
 const { githubstalk } = require('./function/githubstalk.js') 
@@ -99,16 +99,40 @@ app.get('/api/orkut/createpayment', async (req, res) => {
 })
 
 
-app.get('/api/berita/gempa', async() => {
-  const response = await getGempa();
-  const anu = await response.data;
-  res.json({
-    status: true,
-    creator: global.creator,
-    result: anu
-  })
-})
+app.get('/api/berita/cekgempa', async (req, res) => {
+  try {
+    const response = await fetch('https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json');
+    const data = await response.json();
+    const i = data.Infogempa.gempa;
 
+    const result = {
+      tanggal: i.Tanggal,
+      jam: i.Jam,
+      magnitudo: i.Magnitude,
+      kedalaman: i.Kedalaman,
+      wilayah: i.Wilayah,
+      potensi: i.Potensi,
+      dirasakan: i.Dirasakan || 'Kurang Kerasa😂',
+      koordinat: i.Coordinates,
+      lintang: i.Lintang,
+      bujur: i.Bujur,
+      shakemap: `https://data.bmkg.go.id/DataMKG/TEWS/${i.Shakemap}`,
+      datetime: i.DateTime
+    };
+
+    res.json({
+      status: true,
+      creator: 'Rizki',
+      result
+    });
+  } catch (e) {
+    res.status(500).json({
+      status: false,
+      message: 'Gagal mengambil data gempa',
+      error: e.message
+    });
+  }
+});
 
 app.get('/api/orkut/cekstatus', async (req, res) => {
     const { merchant, keyorkut } = req.query;
