@@ -122,7 +122,7 @@ app.get('/api/berita/gempa', async (req, res) => {
 
     res.json({
       status: true,
-      creator: 'Rizki',
+      creator: global.creator,
       result
     });
   } catch (e) {
