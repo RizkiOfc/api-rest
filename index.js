@@ -99,7 +99,7 @@ app.get('/api/orkut/createpayment', async (req, res) => {
 })
 
 
-app.get('/api/berita/cekgempa', async (req, res) => {
+app.get('/api/berita/gempa', async (req, res) => {
   try {
     const response = await fetch('https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json');
     const data = await response.json();
