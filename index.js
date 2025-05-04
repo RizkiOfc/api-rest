@@ -163,19 +163,19 @@ app.get('/', (req, res) => {
 res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('random/ba', async (req, res) => {
-    try {
-        const anu = await ba();
-        res.writeHead(200, {
-            'Content-Type': 'image/png',
-            'Content-Length': anu.length,
-        });
-        res.end(anu);
-    } catch (error) {
-        res.status(500).send(`Error: ${error.message}`);
-    };
+app.get('/api/random/ba', async (req, res) => {
+  try {
+    const buffer = await ba();
+    res.set('Content-Type', 'image/jpeg'); // ganti ke 'image/png' jika perlu
+    res.send(buffer);
+  } catch (err) {
+    res.status(500).json({
+      status: false,
+      message: 'Gagal mengambil gambar',
+      error: err.message
+    });
+  }
 });
-
 
 
 app.get("/api/ai/openai-prompt", async (req, res) => {
